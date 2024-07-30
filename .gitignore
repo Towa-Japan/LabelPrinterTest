@@ -1,0 +1,18 @@
+################################################################################
+# この .gitignore ファイルは Microsoft(R) Visual Studio によって自動的に作成されました。
+################################################################################
+
+/**/.vs
+/**/obj
+/**/bin
+/**/node_modules
+/**/wwwroot/scripts
+*.user
+*.suo
+.nuget
+
+.DS_Store
+
+/**/.vscode/*
+!/**/.vscode/tasks.json
+!/**/.vscode/launch.json
