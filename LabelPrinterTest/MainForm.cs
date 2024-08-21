@@ -27,16 +27,16 @@ public partial class MainForm : Form {
             }
 
             LabelPrinter printer = new(new NLog.Extensions.Logging.NLogLoggerFactory());
-            await printer.Print(
-                new PrintJobInfo() {
-                    JobId = int.Parse(JobIdTxtBox.Text),
-                    JobName = "StockLabel",
-                    PrinterUri = new(UriTxtBox.Text)
-                },
-                imagePath.EnumerateFiles()
-            );
+            PrintJobInfo jobInfo = new() {
+                JobId = int.Parse(JobIdTxtBox.Text),
+                JobName = "StockLabel",
+                PrinterUri = new(UriTxtBox.Text)
+            };
+
+            await printer.Print(jobInfo, imagePath.EnumerateFiles());
 
             MessageBox.Show("印刷が終わりました。");
+            JobIdTxtBox.Text = (jobInfo.JobId + 1).ToString();
         } catch(Exception ex) {
             MessageBox.Show(ex.ToString());
         } finally {
