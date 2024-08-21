@@ -14,6 +14,7 @@ public partial class MainForm : Form {
 
     private async void 送信Btn_Click(object sender, EventArgs e) {
         try {
+            送信Btn.Enabled = false;
             DirectoryInfo imagePath = new(ImagePathTxtBox.Text);
             if(!imagePath.Exists) {
                 MessageBox.Show("イメージパスが存在しません。");
@@ -38,6 +39,8 @@ public partial class MainForm : Form {
             MessageBox.Show("印刷が終わりました。");
         } catch(Exception ex) {
             MessageBox.Show(ex.ToString());
+        } finally {
+            送信Btn.Enabled = true;
         }
     }
 
